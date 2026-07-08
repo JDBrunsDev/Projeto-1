@@ -2,655 +2,360 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumière Estética Avançada — Beleza com Excelência</title>
-  <meta name="description" content="Clínica de estética avançada em São Paulo. Tratamentos faciais, corporais e dermato-estéticos com tecnologia de ponta e profissionais especializados." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Beleza com Identidade — Clínica de Estética com a Dra. Vanessa. Realçar, nunca transformar." />
+  <title>Beleza com Identidade</title>
+
+  <!-- favicon provisório (monograma) — substituir por arquivo real quando houver assets -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231F2123'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-style='italic' font-size='17' fill='%239AA4A8' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#1F2123" />
+
+  <!-- compartilhamento em redes/WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Beleza com Identidade — Clínica de Estética" />
+  <meta property="og:description" content="Realçar, nunca transformar. A estética que valoriza quem você já é." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Quando tiver domínio e imagem, adicione:
+       <meta property="og:url" content="https://SEU-DOMINIO.com.br/" />
+       <meta property="og:image" content="https://SEU-DOMINIO.com.br/og.jpg" />  (1200x630px) -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ============================================================
-       WHATSAPP FLOAT
-       ============================================================ -->
-  <a href="https://wa.me/5511987654321" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    Agendar consulta
-  </a>
-
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
-  <header class="header" id="top">
-    <div class="container">
-      <div class="header-inner">
-        <a href="#top" class="logo">
-          <span class="logo-name">Lumière</span>
-          <span class="logo-sub">Estética Avançada</span>
-        </a>
-        <nav>
-          <ul class="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#tratamentos">Tratamentos</a></li>
-            <li><a href="#equipe">Equipe</a></li>
-            <li><a href="#depoimentos">Resultados</a></li>
-            <li><a href="#contato">Contato</a></li>
-          </ul>
-        </nav>
-        <a href="#agendamento" class="btn btn-primary nav-cta">Agendar consulta</a>
-        <button class="hamburger" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile nav -->
-  <nav class="mobile-nav" aria-label="Navegação mobile">
-    <a href="#sobre">Sobre</a>
-    <a href="#tratamentos">Tratamentos</a>
-    <a href="#equipe">Equipe</a>
-    <a href="#depoimentos">Resultados</a>
-    <a href="#agendamento">Agendar</a>
+  <!-- ════ NAV ════ -->
+  <nav class="nav" aria-label="Navegação principal">
+    <a href="#hero" class="nav-logo">Beleza com <em>Identidade</em></a>
+    <ul class="nav-links" role="list">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#equipe">Equipe</a></li>
+      <li><a href="#procedimentos">Procedimentos</a></li>
+      <li><a href="#galeria">Resultados</a></li>
+      <li><a href="#localizacao">Localização</a></li>
+    </ul>
+    <a href="#agendar" class="nav-cta">Agendar</a>
+    <button class="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <section class="hero" id="inicio">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-petal" style="top:20%; left:8%; width:90px; height:90px;"></div>
-    <div class="hero-petal" style="top:55%; left:40%; width:60px; height:60px; opacity:0.3;"></div>
-    <div class="hero-petal" style="top:70%; right:15%; width:110px; height:110px; opacity:0.35;"></div>
+  <!-- DRAWER -->
+  <div class="drawer" role="dialog" aria-label="Menu de navegação" aria-modal="true">
+    <button class="drawer-close" aria-label="Fechar menu"><span>✕</span> Fechar</button>
+    <p class="drawer-head">Menu</p>
+    <ul class="drawer-links" role="list">
+      <li><a href="#sobre"><span>Sobre</span><span class="idx">01</span></a></li>
+      <li><a href="#equipe"><span>Equipe</span><span class="idx">02</span></a></li>
+      <li><a href="#procedimentos"><span>Procedimentos</span><span class="idx">03</span></a></li>
+      <li><a href="#galeria"><span>Resultados</span><span class="idx">04</span></a></li>
+      <li><a href="#localizacao"><span>Localização</span><span class="idx">05</span></a></li>
+    </ul>
+    <div class="drawer-foot">
+      <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." data-wa class="drawer-cta" target="_blank" rel="noopener noreferrer">
+        Agendar pelo WhatsApp
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
 
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-badge">Clínica Premium · São Paulo</div>
-          <h1 class="hero-title">
-            Revele sua<br>
-            <em>melhor versão</em>
-          </h1>
-          <p class="hero-desc">
-            Tratamentos estéticos avançados com tecnologia de ponta, protocolos personalizados e o cuidado que você merece — em um ambiente pensado para o seu bem-estar.
+  <!-- ════ HERO ════ -->
+  <section id="hero" aria-label="Apresentação">
+    <div class="hero-inner">
+
+      <!-- wordmark: nome tratado como marca, não como manchete empilhada -->
+      <div class="hero-mark" aria-label="Beleza com Identidade">
+        <span class="hero-mark-top">
+          <span class="hero-mark-line"></span>
+          Beleza com
+        </span>
+        <h1 class="hero-mark-name">Identidade</h1>
+        <span class="hero-mark-sub">Clínica de Estética</span>
+      </div>
+
+      <p class="hero-slogan">Realçar, nunca transformar.<br />A estética que valoriza quem você já é.</p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." data-wa class="btn btn-fill" target="_blank" rel="noopener noreferrer">
+          <span>Agendar pelo WhatsApp</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#procedimentos" class="btn btn-line">Ver procedimentos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ SOBRE ════ -->
+  <section id="sobre" aria-labelledby="sobre-t">
+    <div class="sobre-visual reveal-l">
+      <div class="sobre-img"><div class="sobre-img-ph">aqui terá uma foto<br />da clínica</div></div>
+      <div class="sobre-frame" aria-hidden="true"></div>
+    </div>
+    <div class="sobre-text-col">
+      <div class="reveal d1"><span class="sobre-tag">A clínica</span></div>
+      <div class="reveal d2"><span class="eyebrow">Nossa missão</span></div>
+      <div class="reveal d3"><h2 id="sobre-t" class="title sobre-title">Beleza com <em>Identidade</em></h2></div>
+      <div class="reveal d4">
+        <div class="mission">
+          <p class="mission-quote">"Realçar, nunca transformar. Cada rosto carrega uma identidade — nosso papel é valorizá-la, não substituí-la."</p>
+        </div>
+        <p class="body-text sobre-p">
+          O nome da clínica resume sua razão de existir: cuidar da beleza sem
+          apagar o que torna cada pessoa única. Aqui, nenhum procedimento segue
+          um padrão imposto — cada plano é construído a partir de quem você é.
+        </p>
+        <p class="body-text sobre-p">
+          [Espaço para o texto institucional completo: história, valores e a
+          proposta da clínica. Substituir por conteúdo real.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ EQUIPE (múltiplos profissionais) ════ -->
+  <section id="equipe" aria-labelledby="equipe-t">
+    <div class="equipe-head">
+      <div class="reveal"><span class="eyebrow on-dark">Quem cuida de você</span></div>
+      <div class="reveal d2"><h2 id="equipe-t" class="title on-dark">Nossa <em>equipe</em></h2></div>
+    </div>
+    <div class="equipe-grid">
+      <article class="prof-card reveal d1">
+        <div class="prof-img">foto da<br />Dra. Vanessa</div>
+        <div class="prof-info">
+          <h3 class="prof-name">Dra. Vanessa</h3>
+          <p class="prof-role">Responsável técnica</p>
+          <p class="prof-bio">[Breve biografia: formação, experiência e especialização. Substituir por conteúdo real.]</p>
+        </div>
+      </article>
+      <article class="prof-card reveal d2">
+        <div class="prof-img">foto do<br />profissional</div>
+        <div class="prof-info">
+          <h3 class="prof-name">[Nome]</h3>
+          <p class="prof-role">[Especialidade]</p>
+          <p class="prof-bio">[Breve biografia do profissional. Substituir por conteúdo real.]</p>
+        </div>
+      </article>
+      <article class="prof-card reveal d3">
+        <div class="prof-img">foto do<br />profissional</div>
+        <div class="prof-info">
+          <h3 class="prof-name">[Nome]</h3>
+          <p class="prof-role">[Especialidade]</p>
+          <p class="prof-bio">[Breve biografia do profissional. Substituir por conteúdo real.]</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════ PROCEDIMENTOS ════ -->
+  <section id="procedimentos" aria-labelledby="proc-t">
+    <div class="proc-head">
+      <div>
+        <div class="reveal"><span class="eyebrow">O que oferecemos</span></div>
+        <div class="reveal d2"><h2 id="proc-t" class="title proc-title">Procedimentos</h2></div>
+      </div>
+      <div class="reveal d3"><a href="#agendar" class="btn btn-text">Agendar consulta →</a></div>
+    </div>
+    <!-- Vazio e oculto de propósito: o procShowcase (script.js) preenche com os
+         procedimentos reais do JLBruns e só então revela. Assim nunca "pisca"
+         nenhum placeholder ("Procedimento 01"...) antes dos dados chegarem. -->
+    <div class="proc-grid" style="visibility:hidden" aria-busy="true"></div>
+  </section>
+
+  <!-- ════ FILOSOFIA ════ -->
+  <section id="filosofia" aria-labelledby="fil-t">
+    <div class="fil-intro">
+      <div class="reveal"><span class="eyebrow on-dark">Nossa essência</span></div>
+      <div class="reveal d2"><h2 id="fil-t" class="title on-dark">Cuidado que vai além <em>do procedimento</em></h2></div>
+    </div>
+    <div class="fil-grid">
+      <div class="fil-card reveal d1"><span class="fil-num">i</span><div class="fil-ic">✦</div><h3 class="fil-t">[Diferencial 01]</h3><p class="fil-d">Aqui entrará um diferencial da clínica — por exemplo, resultado natural ou abordagem personalizada.</p></div>
+      <div class="fil-card reveal d2"><span class="fil-num">ii</span><div class="fil-ic">◈</div><h3 class="fil-t">[Diferencial 02]</h3><p class="fil-d">Aqui entrará um diferencial da clínica — por exemplo, tecnologia ou segurança.</p></div>
+      <div class="fil-card reveal d3"><span class="fil-num">iii</span><div class="fil-ic">◇</div><h3 class="fil-t">[Diferencial 03]</h3><p class="fil-d">Aqui entrará um diferencial da clínica — por exemplo, atendimento humano e acompanhamento.</p></div>
+    </div>
+  </section>
+
+  <!-- ════ GALERIA ════ -->
+  <section id="galeria" aria-labelledby="gal-t">
+    <div class="gal-head">
+      <div class="reveal"><span class="eyebrow">Resultados</span></div>
+      <div class="reveal d2"><h2 id="gal-t" class="title">Antes & <em>depois</em></h2></div>
+    </div>
+    <div class="gal-grid">
+      <article class="gal-card reveal d1" data-label="[Procedimento 01]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 01]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+      <article class="gal-card reveal d2" data-label="[Procedimento 02]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 02]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+      <article class="gal-card reveal d3" data-label="[Procedimento 03]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 03]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+      <article class="gal-card reveal d1" data-label="[Procedimento 04]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 04]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+      <article class="gal-card reveal d2" data-label="[Procedimento 05]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 05]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+      <article class="gal-card reveal d3" data-label="[Procedimento 06]" data-antes="antes" data-depois="depois"><div class="gal-ba"><div class="gal-ba-half"><span class="gal-tag l">Antes</span><div class="gal-ph antes">antes</div></div><div class="gal-ba-half"><span class="gal-tag r">Depois</span><div class="gal-ph depois">depois</div></div><div class="gal-ba-divider"></div></div><div class="gal-card-foot"><span class="gal-card-label">[Procedimento 06]</span><span class="gal-expand">ampliar ⤢</span></div></article>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" role="dialog" aria-label="Visualização ampliada" aria-modal="true">
+    <div class="lb-content">
+      <button class="lb-close" aria-label="Fechar">✕</button>
+      <button class="lb-nav lb-prev" aria-label="Anterior">←</button>
+      <button class="lb-nav lb-next" aria-label="Próximo">→</button>
+      <div class="lb-stage"></div>
+      <p class="lb-caption"></p>
+      <p class="lb-counter"></p>
+    </div>
+  </div>
+
+  <!-- ════ DEPOIMENTOS ════ -->
+  <section id="depoimentos" aria-labelledby="depo-t">
+    <div class="depo-head">
+      <div class="reveal"><span class="eyebrow on-dark">O que dizem</span></div>
+      <div class="reveal d2"><h2 id="depo-t" class="title on-dark">Experiências <em>reais</em></h2></div>
+    </div>
+    <div class="depo-vp">
+      <div class="depo-track">
+        <article class="depo-card"><span class="depo-q" aria-hidden="true">"</span><div class="depo-stars" aria-label="5 estrelas">★★★★★</div><p class="depo-text">Aqui entrará um depoimento real de uma paciente da clínica.</p><div class="depo-author"><div class="depo-av">—</div><div><div class="depo-name">[Nome]</div><div class="depo-proc">[Procedimento]</div></div></div></article>
+        <article class="depo-card"><span class="depo-q" aria-hidden="true">"</span><div class="depo-stars" aria-label="5 estrelas">★★★★★</div><p class="depo-text">Aqui entrará um depoimento real de uma paciente da clínica.</p><div class="depo-author"><div class="depo-av">—</div><div><div class="depo-name">[Nome]</div><div class="depo-proc">[Procedimento]</div></div></div></article>
+        <article class="depo-card"><span class="depo-q" aria-hidden="true">"</span><div class="depo-stars" aria-label="5 estrelas">★★★★★</div><p class="depo-text">Aqui entrará um depoimento real de uma paciente da clínica.</p><div class="depo-author"><div class="depo-av">—</div><div><div class="depo-name">[Nome]</div><div class="depo-proc">[Procedimento]</div></div></div></article>
+        <article class="depo-card"><span class="depo-q" aria-hidden="true">"</span><div class="depo-stars" aria-label="5 estrelas">★★★★★</div><p class="depo-text">Aqui entrará um depoimento real de uma paciente da clínica.</p><div class="depo-author"><div class="depo-av">—</div><div><div class="depo-name">[Nome]</div><div class="depo-proc">[Procedimento]</div></div></div></article>
+      </div>
+    </div>
+    <div class="depo-nav reveal">
+      <button class="depo-btn depo-prev" aria-label="Anterior">←</button>
+      <button class="depo-btn depo-next" aria-label="Próximo">→</button>
+    </div>
+  </section>
+
+  <!-- ════ LOCALIZAÇÃO ════ -->
+  <section id="localizacao" aria-labelledby="loc-t">
+    <div class="loc-info reveal-l">
+      <span class="eyebrow">Onde estamos</span>
+      <h2 id="loc-t" class="title loc-title">Venha nos <em>visitar</em></h2>
+      <ul class="loc-list" role="list">
+        <li class="loc-item"><div class="loc-ic">📍</div><div><div class="loc-k">Endereço</div><div class="loc-v">[endereço da clínica]</div></div></li>
+        <li class="loc-item"><div class="loc-ic">🕐</div><div><div class="loc-k">Horário</div><div class="loc-v">[horário de atendimento]</div></div></li>
+        <li class="loc-item"><div class="loc-ic">📞</div><div><div class="loc-k">Contato</div><div class="loc-v">[telefone / e-mail]</div></div></li>
+        <li class="loc-item"><div class="loc-ic">🚗</div><div><div class="loc-k">Estacionamento</div><div class="loc-v">[informação a definir]</div></div></li>
+      </ul>
+    </div>
+    <div class="loc-map reveal-r"><span>📍</span><span>mapa será inserido aqui</span></div>
+  </section>
+
+  <!-- ════ CTA ════ -->
+  <section id="agendar" aria-labelledby="ag-t">
+    <div class="agendar-in">
+      <div class="reveal"><span class="eyebrow on-dark" style="justify-content:center;">Dê o primeiro passo</span></div>
+      <div class="reveal d2"><h2 id="ag-t" class="title on-dark agendar-title">Agende sua <em>consulta</em></h2></div>
+      <div class="reveal d3"><p class="body-text on-dark agendar-sub">Escolha o dia e o horário que preferir para a sua consulta.</p></div>
+
+      <!-- ── CALENDÁRIO DE AGENDAMENTO ──
+           Os dados (disponibilidade) e a criação do agendamento vêm do
+           adapter "Scheduling" em script.js — hoje em modo mock, depois
+           trocado pela API do sistema JLBruns. -->
+      <div class="sched reveal d4">
+        <!-- coluna 1: calendário -->
+        <div class="sched-cal">
+          <div class="sched-cal-head">
+            <button class="sched-nav" type="button" data-cal-prev aria-label="Mês anterior">←</button>
+            <span class="sched-month" data-cal-month>—</span>
+            <button class="sched-nav" type="button" data-cal-next aria-label="Próximo mês">→</button>
+          </div>
+          <div class="sched-weekdays" aria-hidden="true">
+            <span>dom</span><span>seg</span><span>ter</span><span>qua</span><span>qui</span><span>sex</span><span>sáb</span>
+          </div>
+          <div class="sched-grid" data-cal-grid></div>
+          <p class="sched-legend">
+            <span><span class="lg lg-free"></span>disponível</span>
+            <span><span class="lg lg-res"></span>reservado</span>
           </p>
-          <div class="hero-actions">
-            <a href="#agendamento" class="btn btn-primary">Agendar avaliação gratuita</a>
-            <a href="#tratamentos" class="btn btn-outline">Ver tratamentos</a>
-          </div>
-          <div class="hero-trust">
-            <div class="trust-avatars">
-              <span>MC</span><span>PL</span><span>RA</span><span>+</span>
-            </div>
-            <div class="trust-text">
-              <strong>+2.400 clientes satisfeitas</strong>
-              avaliação média de 4,9 ★
-            </div>
-          </div>
         </div>
 
-        <div class="hero-visual">
-          <div class="hero-card-main">
-            <div class="hero-img-placeholder">
-              <div class="icon">🌸</div>
-              <p>Foto da clínica</p>
-            </div>
-          </div>
-          <div class="hero-float-card float-card-1">
-            <div class="float-icon">✨</div>
-            <div>
-              <div class="float-label">Próximo horário</div>
-              <div class="float-value">Hoje às 14h30</div>
-            </div>
-          </div>
-          <div class="hero-float-card float-card-2">
-            <div class="float-stars">★★★★★</div>
-            <div class="float-rating">4,9</div>
-            <div class="float-reviews">847 avaliações</div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <!-- coluna 2: horários → formulário → confirmação -->
+        <div class="sched-panel">
+          <p class="sched-empty" data-sched-empty>Selecione um dia disponível no calendário.</p>
 
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-dot"></div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       STATS STRIP
-       ============================================================ -->
-  <div class="stats-strip">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item reveal">
-          <div class="stat-number" data-target="2400" data-suffix="+">0</div>
-          <div class="stat-label">Clientes atendidas</div>
-        </div>
-        <div class="stat-item reveal delay-1">
-          <div class="stat-number" data-target="12" data-suffix=" anos">0</div>
-          <div class="stat-label">De experiência</div>
-        </div>
-        <div class="stat-item reveal delay-2">
-          <div class="stat-number" data-target="98" data-suffix="%">0</div>
-          <div class="stat-label">Índice de satisfação</div>
-        </div>
-        <div class="stat-item reveal delay-3">
-          <div class="stat-number" data-target="15" data-suffix="+">0</div>
-          <div class="stat-label">Especialidades</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       SOBRE
-       ============================================================ -->
-  <section class="about" id="sobre">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-images reveal-left">
-          <div class="about-img-main">
-            <div class="img-placeholder">
-              <span class="img-icon">🏥</span>
-              <span>Foto da clínica</span>
-            </div>
-          </div>
-          <div class="about-img-secondary">
-            <div class="img-placeholder">
-              <span class="img-icon">👩‍⚕️</span>
-              <span>Equipe</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-text reveal-right">
-          <div class="about-badge">✦ Nossa história</div>
-          <div class="section-tag">Sobre a clínica</div>
-          <h2 class="section-title">Ciência e beleza em <em>perfeita harmonia</em></h2>
-          <p>Fundada em 2012 pela Dra. Isabela Moura, a Lumière nasceu da crença de que estética e saúde são inseparáveis. Nossa clínica combina tecnologias de última geração com protocolos individualizados para entregar resultados reais e duradouros.</p>
-          <p>Nosso espaço foi projetado para que você se sinta acolhida desde o primeiro momento — da recepção ao pós-tratamento. Cada detalhe importa.</p>
-          <div class="about-features">
-            <div class="about-feature reveal delay-1">
-              <div class="feature-icon">🔬</div>
-              <div class="feature-info">
-                <strong>Tecnologia Avançada</strong>
-                <p>Equipamentos de última geração com certificação Anvisa</p>
-              </div>
-            </div>
-            <div class="about-feature reveal delay-2">
-              <div class="feature-icon">🩺</div>
-              <div class="feature-info">
-                <strong>Equipe Especializada</strong>
-                <p>Médicos, dermatologistas e esteticistas certificados</p>
-              </div>
-            </div>
-            <div class="about-feature reveal delay-3">
-              <div class="feature-icon">💎</div>
-              <div class="feature-info">
-                <strong>Protocolos Exclusivos</strong>
-                <p>Tratamentos personalizados para o seu tipo de pele</p>
-              </div>
-            </div>
-          </div>
-          <a href="#agendamento" class="btn btn-primary" style="margin-top:0.5rem">Conhecer a clínica</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       TRATAMENTOS / SERVICES
-       ============================================================ -->
-  <section class="services" id="tratamentos">
-    <div class="container">
-      <div class="services-header reveal">
-        <div class="section-tag">O que oferecemos</div>
-        <h2 class="section-title">Nossos <em>tratamentos</em></h2>
-        <p class="section-sub" style="margin:0.8rem auto 0; text-align:center;">Cada protocolo é cuidadosamente desenvolvido para resultados seguros, eficazes e naturais.</p>
-      </div>
-      <div class="services-grid">
-
-        <div class="service-card reveal delay-1">
-          <div class="service-icon">💉</div>
-          <h3>Toxina Botulínica</h3>
-          <p>Suavização de linhas de expressão com resultado natural, preservando a expressividade do seu rosto.</p>
-          <div class="service-price">A partir de R$ 650</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-        <div class="service-card reveal delay-2">
-          <div class="service-icon">🌹</div>
-          <h3>Preenchimento Labial</h3>
-          <p>Hidratação e volume com ácido hialurônico para lábios mais definidos e naturalmente bonitos.</p>
-          <div class="service-price">A partir de R$ 900</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-        <div class="service-card reveal delay-3">
-          <div class="service-icon">✨</div>
-          <h3>Limpeza de Pele Profunda</h3>
-          <p>Extração de impurezas, desobstrução dos poros e renovação celular para uma pele radiante.</p>
-          <div class="service-price">A partir de R$ 280</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-        <div class="service-card reveal delay-1">
-          <div class="service-icon">🔮</div>
-          <h3>Microagulhamento</h3>
-          <p>Estimulação do colágeno para redução de cicatrizes, poros dilatados e rejuvenescimento intenso.</p>
-          <div class="service-price">A partir de R$ 480</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-        <div class="service-card reveal delay-2">
-          <div class="service-icon">⚡</div>
-          <h3>Laser CO₂ Fracionado</h3>
-          <p>Tratamento de alta performance para manchas, cicatrizes e flacidez com resultado cirúrgico.</p>
-          <div class="service-price">A partir de R$ 1.200</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-        <div class="service-card reveal delay-3">
-          <div class="service-icon">🌊</div>
-          <h3>Drenagem Linfática</h3>
-          <p>Técnica manual especializada para redução de edemas, celulite e melhora da circulação.</p>
-          <div class="service-price">A partir de R$ 220</div>
-          <a href="#agendamento" class="service-link">Agendar →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       DIFERENCIAIS
-       ============================================================ -->
-  <section class="differentials" id="diferenciais">
-    <div class="container">
-      <div class="diff-grid">
-        <div>
-          <div class="section-tag reveal">Por que nos escolher</div>
-          <h2 class="section-title reveal delay-1">O que nos torna <em>diferentes</em></h2>
-          <div class="diff-list">
-            <div class="diff-item reveal delay-1">
-              <div class="diff-num">01</div>
-              <div>
-                <h4>Avaliação gratuita e personalizada</h4>
-                <p>Antes de qualquer procedimento, realizamos uma análise completa da sua pele para indicar o protocolo ideal para o seu perfil.</p>
-              </div>
-            </div>
-            <div class="diff-item reveal delay-2">
-              <div class="diff-num">02</div>
-              <div>
-                <h4>Equipamentos com certificação Anvisa</h4>
-                <p>Todos os nossos aparelhos são regularizados e calibrados periodicamente, garantindo máxima segurança e eficácia.</p>
-              </div>
-            </div>
-            <div class="diff-item reveal delay-3">
-              <div class="diff-num">03</div>
-              <div>
-                <h4>Acompanhamento pós-tratamento</h4>
-                <p>O nosso cuidado não termina quando você sai da clínica. Acompanhamos sua evolução e ajustamos os protocolos conforme necessário.</p>
-              </div>
-            </div>
-            <div class="diff-item reveal delay-4">
-              <div class="diff-num">04</div>
-              <div>
-                <h4>Ambiente premium e acolhedor</h4>
-                <p>Espaço planejado para que você relaxe e se sinta especial do momento em que chega até depois que vai embora.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="diff-visual reveal-right">
-          <div class="diff-quote">
-            "Cada pessoa é única, e assim deve ser o seu tratamento. Não existem protocolos padrão — existe o protocolo certo para você."
-          </div>
-          <div class="diff-author">
-            <div class="diff-avatar">IM</div>
-            <div class="diff-author-info">
-              <strong>Dra. Isabela Moura</strong>
-              <span>Fundadora & Médica Esteta · CRM 123456</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       EQUIPE
-       ============================================================ -->
-  <section class="team" id="equipe">
-    <div class="container">
-      <div class="team-header reveal">
-        <div class="section-tag">Especialistas</div>
-        <h2 class="section-title">Nossa <em>equipe</em></h2>
-        <p class="section-sub" style="text-align:center; margin:0.8rem auto 0;">Profissionais altamente qualificados e apaixonados pelo que fazem.</p>
-      </div>
-      <div class="team-grid">
-        <div class="team-card reveal delay-1">
-          <div class="team-photo">
-            <div class="team-photo-placeholder">
-              <div class="team-initials">IM</div>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Dra. Isabela Moura</h3>
-            <div class="team-role">Médica Esteta · CRM 123456</div>
-            <p class="team-bio">Especialista em medicina estética com 12 anos de experiência. Pós-graduada em dermatologia estética pela USP.</p>
-            <div class="team-socials">
-              <a href="#" class="team-social" aria-label="Instagram">in</a>
-              <a href="#" class="team-social" aria-label="LinkedIn">Li</a>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal delay-2">
-          <div class="team-photo">
-            <div class="team-photo-placeholder">
-              <div class="team-initials">CR</div>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Dra. Camila Ramos</h3>
-            <div class="team-role">Dermatologista · CRM 234567</div>
-            <p class="team-bio">Dermatologista clínica e estética com foco em tratamentos a laser e fotoenvelhecimento. Membro da SBD.</p>
-            <div class="team-socials">
-              <a href="#" class="team-social" aria-label="Instagram">in</a>
-              <a href="#" class="team-social" aria-label="LinkedIn">Li</a>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal delay-3">
-          <div class="team-photo">
-            <div class="team-photo-placeholder">
-              <div class="team-initials">LC</div>
-            </div>
-          </div>
-          <div class="team-info">
-            <h3>Larissa Costa</h3>
-            <div class="team-role">Esteticista Sênior · CREFITO 345678</div>
-            <p class="team-bio">Especialista em tratamentos corporais, drenagem e protocolos faciais. 8 anos de prática clínica.</p>
-            <div class="team-socials">
-              <a href="#" class="team-social" aria-label="Instagram">in</a>
-              <a href="#" class="team-social" aria-label="LinkedIn">Li</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       DEPOIMENTOS
-       ============================================================ -->
-  <section class="testimonials" id="depoimentos">
-    <div class="container">
-      <div class="testimonials-header reveal">
-        <div class="section-tag">Depoimentos</div>
-        <h2 class="section-title">O que nossas <em>clientes dizem</em></h2>
-      </div>
-      <div class="testimonials-wrapper reveal delay-2">
-        <div class="testimonials-track">
-
-          <!-- Slide 1 -->
-          <div class="testimonial-slide">
-            <div class="testimonials-grid-inner">
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"Fiz o microagulhamento com a Dra. Isabela e o resultado foi incrível. Minhas cicatrizes de acne praticamente sumiram. Profissionalismo impecável do início ao fim."</p>
-                <div class="t-author">
-                  <div class="t-avatar">MF</div>
-                  <div>
-                    <div class="t-name">Mariana Ferreira</div>
-                    <div class="t-info">Cliente há 2 anos · São Paulo</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"O preenchimento labial ficou absolutamente natural. Todo mundo percebe a diferença mas ninguém consegue identificar o que mudou. Exatamente o que eu queria!"</p>
-                <div class="t-author">
-                  <div class="t-avatar">RL</div>
-                  <div>
-                    <div class="t-name">Renata Lima</div>
-                    <div class="t-info">Cliente há 1 ano · Moema</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"A estrutura da clínica é linda e acolhedora. Me sinto em um spa de luxo a cada visita. A Larissa é extraordinária na drenagem. Já indiquei para todas as minhas amigas."</p>
-                <div class="t-author">
-                  <div class="t-avatar">CP</div>
-                  <div>
-                    <div class="t-name">Carolina Pires</div>
-                    <div class="t-info">Cliente há 3 anos · Jardins</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="sched-slots-wrap" data-slots-wrap hidden>
+            <p class="sched-panel-label">Horários — <strong data-sel-date>—</strong></p>
+            <div class="sched-slots" data-slots role="group" aria-label="Horários"></div>
           </div>
 
-          <!-- Slide 2 -->
-          <div class="testimonial-slide">
-            <div class="testimonials-grid-inner">
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"Minha pele nunca esteve tão bem. Fiz o protocolo de laser CO₂ e a diferença foi enorme. A equipe foi extremamente cuidadosa e atenciosa durante todo o processo."</p>
-                <div class="t-author">
-                  <div class="t-avatar">JS</div>
-                  <div>
-                    <div class="t-name">Juliana Santos</div>
-                    <div class="t-info">Cliente há 8 meses · Brooklin</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"Fiz a avaliação gratuita sem compromisso e fiquei tão impressionada com a dedicação da Dra. Camila que decidi iniciar o tratamento na mesma semana. Vale cada centavo."</p>
-                <div class="t-author">
-                  <div class="t-avatar">AM</div>
-                  <div>
-                    <div class="t-name">Ana Mendes</div>
-                    <div class="t-info">Cliente há 6 meses · Itaim</div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="t-stars">★★★★★</div>
-                <p class="t-text">"A botox ficou superleve, exatamente como eu pedi. Continuei expressiva mas as linhas sumiram. Primeiro lugar que realmente ouvi o que eu queria."</p>
-                <div class="t-author">
-                  <div class="t-avatar">BV</div>
-                  <div>
-                    <div class="t-name">Beatriz Vieira</div>
-                    <div class="t-info">Cliente há 4 anos · Pinheiros</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="testimonials-nav">
-          <button class="t-btn t-prev" aria-label="Anterior">‹</button>
-          <div class="t-dots">
-            <div class="t-dot active"></div>
-            <div class="t-dot"></div>
-          </div>
-          <button class="t-btn t-next" aria-label="Próximo">›</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CTA BANNER
-       ============================================================ -->
-  <div class="cta-banner">
-    <div class="container">
-      <div class="cta-inner">
-        <div class="cta-text reveal">
-          <h2>Pronta para revelar sua<br><em>melhor versão?</em></h2>
-          <p>Agende agora sua avaliação gratuita e descubra o protocolo ideal para você.</p>
-        </div>
-        <div class="cta-actions reveal delay-2">
-          <div class="cta-phone">(11) 9 8765-4321</div>
-          <div class="cta-hours">Seg–Sex 8h–20h · Sáb 8h–14h</div>
-          <a href="#agendamento" class="btn btn-light" style="margin-top:0.8rem">Agendar gratuitamente →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       CONTATO & AGENDAMENTO
-       ============================================================ -->
-  <section class="contact" id="contato">
-    <div class="container">
-      <div class="contact-grid" id="agendamento">
-
-        <div class="contact-info">
-          <div class="section-tag reveal">Fale conosco</div>
-          <h2 class="section-title reveal delay-1">Agende sua <em>consulta</em></h2>
-          <p class="section-sub reveal delay-2">Primeira avaliação 100% gratuita e sem compromisso. Nossa equipe retornará em até 2 horas.</p>
-          <div class="contact-details reveal delay-2">
-            <div class="contact-detail">
-              <div class="cd-icon">📍</div>
-              <div>
-                <div class="cd-label">Endereço</div>
-                <div class="cd-value">Rua Oscar Freire, 1147 — Jardins, São Paulo/SP</div>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <div class="cd-icon">📞</div>
-              <div>
-                <div class="cd-label">Telefone / WhatsApp</div>
-                <div class="cd-value">(11) 9 8765-4321</div>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <div class="cd-icon">📧</div>
-              <div>
-                <div class="cd-label">E-mail</div>
-                <div class="cd-value">contato@lumierestetica.com.br</div>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <div class="cd-icon">🕐</div>
-              <div>
-                <div class="cd-label">Horário de atendimento</div>
-                <div class="cd-value">Seg–Sex 8h–20h · Sábado 8h–14h</div>
-              </div>
-            </div>
-          </div>
-          <div class="contact-map reveal delay-3">
-            📍 Mapa — integrar Google Maps aqui
-          </div>
-        </div>
-
-        <div class="booking-form reveal delay-2">
-          <h3 class="form-title">Solicitar agendamento</h3>
-          <p class="form-sub">Preencha e entraremos em contato para confirmar seu horário.</p>
-          <form novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Nome completo</label>
-                <input type="text" id="name" placeholder="Seu nome" required />
-              </div>
-              <div class="form-group">
-                <label for="phone">WhatsApp</label>
-                <input type="tel" id="phone" placeholder="(11) 9 0000-0000" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" placeholder="seu@email.com" />
-            </div>
-            <div class="form-group">
-              <label for="service">Tratamento de interesse</label>
-              <select id="service">
-                <option value="">Selecione o tratamento</option>
-                <option>Toxina Botulínica</option>
-                <option>Preenchimento Labial</option>
-                <option>Limpeza de Pele Profunda</option>
-                <option>Microagulhamento</option>
-                <option>Laser CO₂ Fracionado</option>
-                <option>Drenagem Linfática</option>
-                <option>Avaliação gratuita (sem tratamento definido)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Mensagem (opcional)</label>
-              <textarea id="message" placeholder="Conte-nos um pouco sobre sua pele ou suas principais preocupações..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary form-submit">Solicitar agendamento →</button>
+          <form class="sched-form" data-form hidden novalidate>
+            <p class="sched-panel-label">Seus dados</p>
+            <label class="sched-field">
+              <span>Nome completo</span>
+              <input type="text" name="nome" required autocomplete="name" />
+            </label>
+            <label class="sched-field">
+              <span>WhatsApp / telefone</span>
+              <input type="tel" name="telefone" required autocomplete="tel" inputmode="tel" placeholder="(47) 99999-9999" />
+            </label>
+            <label class="sched-field">
+              <span>E-mail <em class="sched-opt">(opcional)</em></span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="voce@email.com" />
+            </label>
+            <label class="sched-field">
+              <span>Procedimento</span>
+              <select name="procedimento" data-proc required></select>
+            </label>
+            <p class="sched-summary" data-summary></p>
+            <button type="submit" class="btn btn-fill sched-submit"><span>Confirmar agendamento</span></button>
+            <p class="sched-error" data-error role="alert" hidden></p>
           </form>
-        </div>
 
+          <div class="sched-success" data-success aria-live="polite" hidden>
+            <div class="sched-success-ic" aria-hidden="true">✓</div>
+            <h3>Agendamento confirmado</h3>
+            <p data-success-msg></p>
+            <button type="button" class="btn btn-text sched-restart" data-restart>Fazer outro agendamento</button>
+          </div>
+        </div>
       </div>
+
+      <!-- WhatsApp / telefone como apoio -->
+      <p class="agendar-alt reveal d5">
+        Prefere falar direto? <a href="https://wa.me/5547990000000" data-wa>Agende pelo WhatsApp</a> ou <a href="tel:+5547990000000" data-tel>ligue para a clínica</a>.
+      </p>
+      <p class="agendar-note reveal d5">[horário de atendimento]</p>
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <span class="logo-name">Lumière</span>
-            <span class="logo-sub">Estética Avançada</span>
-          </div>
-          <p class="footer-desc">Tratamentos estéticos avançados com tecnologia de ponta e o cuidado que você merece. Sua beleza é a nossa missão.</p>
-          <div class="footer-socials">
-            <a href="#" class="footer-social" aria-label="Instagram">Ig</a>
-            <a href="#" class="footer-social" aria-label="Facebook">Fb</a>
-            <a href="#" class="footer-social" aria-label="TikTok">Tk</a>
-            <a href="#" class="footer-social" aria-label="YouTube">Yt</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Tratamentos</h4>
-          <ul>
-            <li><a href="#tratamentos">Toxina Botulínica</a></li>
-            <li><a href="#tratamentos">Preenchimento Labial</a></li>
-            <li><a href="#tratamentos">Limpeza de Pele</a></li>
-            <li><a href="#tratamentos">Microagulhamento</a></li>
-            <li><a href="#tratamentos">Laser CO₂</a></li>
-            <li><a href="#tratamentos">Drenagem Linfática</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Clínica</h4>
-          <ul>
-            <li><a href="#sobre">Sobre nós</a></li>
-            <li><a href="#equipe">Nossa equipe</a></li>
-            <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#agendamento">Agendamento</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contato</h4>
-          <ul>
-            <li><a href="tel:+5511987654321">(11) 9 8765-4321</a></li>
-            <li><a href="mailto:contato@lumierestetica.com.br">contato@lumierestetica.com.br</a></li>
-            <li><a href="#">R. Oscar Freire, 1147</a></li>
-            <li><a href="#">Jardins — São Paulo/SP</a></li>
-          </ul>
-        </div>
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    <div class="foot-top">
+      <div>
+        <div class="foot-name">Beleza com <em>Identidade</em></div>
+        <p class="foot-desc">Realçar, nunca transformar. Estética que respeita quem você é.</p>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 Lumière Estética Avançada. Todos os direitos reservados.</p>
-        <p><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
+      <div>
+        <p class="foot-ct">Navegação</p>
+        <ul class="foot-links" role="list">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#procedimentos">Procedimentos</a></li>
+          <li><a href="#galeria">Resultados</a></li>
+        </ul>
       </div>
+      <div>
+        <p class="foot-ct">Contato</p>
+        <ul class="foot-links" role="list">
+          <li><a href="#localizacao">Endereço</a></li>
+          <li><a href="#localizacao">Telefone</a></li>
+          <li><a href="#agendar">Agendar consulta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p class="foot-copy">© 2026 Beleza com Identidade. Todos os direitos reservados.</p>
+      <p class="foot-credit">Sistema por <span>JLBruns</span></p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ════ WHATSAPP ════ -->
+  <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20saber%20mais." data-wa="Olá! Gostaria de saber mais." class="wa" target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    <span class="wa-label">WhatsApp</span>
+  </a>
+
+  <script src="script.js?v=9"></script>
 </body>
 </html>
