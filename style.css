@@ -517,6 +517,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sched-field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.9rem; }
 .sched-field span { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--graphite); }
 .sched-opt { font-style: normal; text-transform: none; letter-spacing: 0; color: var(--silver); }
+/* honeypot anti-robô: fora da tela e fora da navegação por teclado */
+.sched-hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .sched-field input, .sched-field select { font-family: var(--f-body); font-size: 0.9rem; color: var(--ink); padding: 0.7rem 0.8rem; border: 1px solid var(--line); background: var(--pearl); width: 100%; }
 .sched-field input:focus, .sched-field select:focus { outline: none; border-color: var(--accent); }
 .sched-summary { font-family: var(--f-display); font-style: italic; font-size: 0.95rem; color: var(--ink); margin: 0.3rem 0 1.1rem; }
@@ -594,3 +596,175 @@ footer { background: #16181A; padding: 4.5rem 5% 2.5rem; }
   .hero-mark-name { transform: none !important; opacity: 1 !important; }
   .hero-mark-line { width: 48px !important; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   CAMADA DE LUXO — profundidade, materiais e microdetalhes
+   (aditivo: refina o que já existe sem trocar a identidade)
+════════════════════════════════════════════════════════════ */
+:root {
+  --champagne: #C8B79B;                 /* toque quente metálico, usado com parcimônia */
+  --shadow-sm: 0 2px 12px rgba(31,33,35,0.05);
+  --shadow-md: 0 22px 55px -22px rgba(31,33,35,0.28);
+  --shadow-lg: 0 44px 90px -34px rgba(31,33,35,0.42);
+  --shadow-dark: 0 40px 80px -30px rgba(0,0,0,0.55);
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* barra de progresso de rolagem — fio metálico no topo */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 1100;
+  background: linear-gradient(90deg, var(--accent), var(--accent-lt), var(--champagne));
+  box-shadow: 0 0 12px rgba(124,135,140,0.5);
+  transition: width 0.12s linear; pointer-events: none;
+}
+
+/* linhas dos "eyebrow" viram fio com fade metálico */
+.eyebrow::before { background: linear-gradient(90deg, var(--accent), rgba(124,135,140,0)); }
+.eyebrow.on-dark::before { background: linear-gradient(90deg, var(--accent-lt), rgba(154,164,168,0)); }
+
+/* nome do hero com leve degradê para dar dimensão (mantém contraste) */
+.hero-mark-name {
+  background: linear-gradient(180deg, var(--ink) 0%, #34383c 60%, #494d51 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero-mark-name { -webkit-text-fill-color: currentColor; color: var(--ink); }
+}
+
+/* HERO — glow que respira + granulado sutil + vinheta */
+#hero::before {
+  content: ''; position: absolute; inset: -25%; z-index: 1; pointer-events: none;
+  background: radial-gradient(38% 38% at 72% 26%, rgba(124,135,140,0.22), transparent 70%);
+  animation: heroGlow 16s ease-in-out infinite alternate;
+}
+#hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.5; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+@keyframes heroGlow {
+  from { transform: translate(-2%, -1%) scale(1); }
+  to   { transform: translate(3%, 2%) scale(1.1); }
+}
+
+/* indicador de rolagem no rodapé do hero */
+.hero-scroll {
+  position: absolute; left: 50%; bottom: 1.6rem; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
+  text-decoration: none; opacity: 0; animation: fade-in 1s 1.9s var(--ease) forwards;
+}
+.hero-scroll-line { position: relative; width: 1px; height: 46px; background: rgba(124,135,140,0.35); overflow: hidden; }
+.hero-scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 45%; background: var(--accent); animation: scrollCue 2.2s var(--ease) infinite; }
+.hero-scroll-txt { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); }
+.hero-scroll:hover .hero-scroll-txt { color: var(--accent); }
+@keyframes scrollCue { 0% { transform: translateY(-110%); } 100% { transform: translateY(230%); } }
+
+/* BOTÕES — brilho que percorre o preenchido */
+.btn-fill { isolation: isolate; }
+.btn-fill span, .btn-fill svg { z-index: 3; }
+.btn-fill::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -45%; width: 35%; z-index: 2; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: skewX(-16deg); transition: left 0.7s var(--ease-lux);
+}
+.btn-fill:hover::before { left: 135%; }
+
+/* PROCEDIMENTOS — tiles que levantam com fio metálico no topo */
+.proc-card { transition: background 0.5s var(--ease), transform 0.5s var(--ease-lux), box-shadow 0.5s var(--ease-lux); }
+.proc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--accent), transparent); transition: transform 0.5s var(--ease-lux); }
+.proc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); z-index: 1; }
+.proc-card:hover::before { transform: scaleX(1); }
+.proc-ic { transition: background 0.4s, color 0.4s, transform 0.5s var(--ease-lux); }
+.proc-card:hover .proc-ic { transform: rotate(90deg); }
+
+/* EQUIPE — cartões elevam e a moldura ganha brilho */
+.prof-card { position: relative; transition: transform 0.55s var(--ease-lux), box-shadow 0.55s var(--ease-lux), border-color 0.55s; }
+.prof-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-dark); border-color: rgba(154,164,168,0.45); }
+.prof-img { overflow: hidden; }
+.prof-img img { transition: transform 0.7s var(--ease-lux); }
+.prof-card:hover .prof-img img { transform: scale(1.06); }
+
+/* GALERIA — elevação maior + zoom nas imagens */
+.gal-card { transition: transform 0.55s var(--ease-lux), box-shadow 0.55s var(--ease-lux); }
+.gal-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.gal-ph { transition: transform 0.8s var(--ease-lux); }
+.gal-card:hover .gal-ph { transform: scale(1.06); }
+
+/* DEPOIMENTOS — leve elevação + borda viva */
+.depo-card { transition: transform 0.5s var(--ease-lux), border-color 0.5s; }
+.depo-card:hover { transform: translateY(-4px); border-color: rgba(154,164,168,0.4); }
+
+/* SUPERFÍCIES nobres — sombra suave dá "peso" e materialidade */
+.sched { box-shadow: var(--shadow-lg); }
+.sobre-img { box-shadow: var(--shadow-md); }
+.loc-map { box-shadow: var(--shadow-md); }
+
+/* NAV — fio sutil ao rolar */
+.nav.scrolled { border-bottom: 1px solid rgba(237,236,232,0.06); }
+
+/* DRAWER — link alternativo de WhatsApp abaixo do CTA */
+.drawer-alt {
+  display: block; text-align: center; margin-top: 1rem;
+  font-size: 0.72rem; letter-spacing: 0.06em; color: var(--on-dark-dim);
+  text-decoration: underline; text-underline-offset: 3px;
+  opacity: 0; transition: opacity 0.5s 0.56s var(--ease), color 0.3s;
+}
+.drawer.open .drawer-alt { opacity: 1; }
+.drawer-alt:hover { color: var(--accent-lt); }
+
+@media (max-width: 600px) {
+  .hero-scroll { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero::before, .hero-scroll-line::after { animation: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   EFEITOS — parallax · cursor magnético · revelação · fundo WebGL
+   (progressivo: nada disso é essencial; degrada com elegância)
+════════════════════════════════════════════════════════════ */
+
+/* Fundo animado do hero (canvas WebGL). Fica ATRÁS do conteúdo e do glow. */
+.hero-bg { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; z-index: 0; overflow: hidden; will-change: transform; }
+.fx-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s var(--ease); }
+.fx-canvas.ready { opacity: 1; }
+
+/* Parallax: só prepara a composição; o deslocamento é aplicado via JS */
+[data-parallax] { will-change: transform; }
+
+/* Revelação por "cortina" (clip-path) — imagens surgem de cima para baixo */
+.fx-clip { clip-path: inset(0 0 100% 0); transition: clip-path 1.15s var(--ease-lux); will-change: clip-path; }
+.fx-clip.in { clip-path: inset(0 0 0 0); }
+
+/* botões magnéticos: transição suave só na volta (a ida é imediata via JS) */
+[data-magnetic] { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-canvas { display: none; }
+  [data-parallax] { transform: none !important; }
+}
+
+/* Aparecimento das seções — máscara gradiente ligada ao SCROLL (topo → base):
+   o topo do bloco surge primeiro e o resto aparece de cima para baixo conforme
+   a página rola. O JS aplica mask-image/opacidade a cada bloco. Quando o sistema
+   está ativo (.fx-scroll), o reveal antigo é neutralizado para não duplicar. */
+.fx-scroll .reveal, .fx-scroll .reveal-l, .fx-scroll .reveal-r {
+  opacity: 1 !important; transform: none !important; filter: none !important;
+}
+.fx-reveal { will-change: opacity, transform, -webkit-mask-image, mask-image; }
+
+/* FAIXA em movimento (marquee) — o JS clona o conteúdo para preencher a largura
+   (2 metades idênticas → translateX(-50%) é perfeitamente contínuo, sem "buraco"). */
+.marquee { background: var(--stone-dk); border-block: 1px solid var(--line-dark); overflow: hidden; padding: 1.15rem 0; }
+.marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.mq-half { display: flex; flex: 0 0 auto; }
+.mq-seq {
+  display: inline-flex; align-items: center; gap: 2.4rem; padding-right: 2.4rem;
+  font-family: var(--f-display); font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.35rem); color: var(--on-dark-dim); white-space: nowrap;
+}
+.mq-seq .sep { color: var(--accent-lt); font-style: normal; font-size: 0.7em; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }

@@ -56,6 +56,23 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
+// ── Barra de progresso de rolagem (fio metálico no topo) ──
+(function scrollProgress() {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.appendChild(bar);
+  let ticking = false;
+  const update = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    ticking = false;
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
 // ── DRAWER — fecha de múltiplas formas ──
 (function drawerNav() {
   const burger = document.querySelector('.burger');
@@ -459,6 +476,7 @@ const Scheduling = (function () {
       procedimento: fd.get('procedimento') || '',
       data: selectedDate,
       hora: selectedTime,
+      website: (fd.get('website') || '').trim(), // honeypot anti-robô (deve ir vazio)
     };
     if (!payload.nome || !payload.telefone || !payload.procedimento) {
       errorEl.textContent = 'Preencha todos os campos para confirmar.';
@@ -513,6 +531,238 @@ const Scheduling = (function () {
   btnNext.addEventListener('click', () => { view.setMonth(view.getMonth() + 1); resetSelection(); loadMonth(); });
 
   loadMonth();
+})();
+
+// ════════════════════════════════════════════════════════════
+//  EFEITOS — parallax · revelação (clip) · cursor magnético · fundo WebGL
+//  Progressivo e leve: liga só quando faz sentido (mouse presente,
+//  sem "reduzir movimento") e pausa o WebGL quando o hero sai da tela.
+// ════════════════════════════════════════════════════════════
+(function effects() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // ── Revelação das seções: MÁSCARA GRADIENTE ligada ao SCROLL (topo → base) ──
+  //  O topo do bloco surge primeiro; o resto aparece de cima para baixo conforme
+  //  a página rola. Estilo do site de referência.
+  (function scrollReveal() {
+    if (reduced) return;
+    document.documentElement.classList.add('fx-scroll'); // neutraliza o reveal antigo
+    const sel = '.sobre-visual, .sobre-text-col, .equipe-head, .equipe-grid, .proc-head, .proc-grid, .fil-intro, .fil-grid, .gal-head, .gal-grid, .depo-head, .depo-vp, .loc-info, .loc-map, .agendar-in, .foot-top';
+    const els = Array.from(document.querySelectorAll(sel));
+    if (!els.length) return;
+    els.forEach(el => el.classList.add('fx-reveal'));
+    const SOFT = 16; // borda suave do gradiente (%)
+    let ticking = false;
+    function update() {
+      const vh = window.innerHeight;
+      for (const el of els) {
+        const r = el.getBoundingClientRect();
+        // 0 quando o topo está a ~88% da tela; 1 quando chega a ~38%
+        const p = Math.max(0, Math.min(1, (vh * 0.88 - r.top) / (vh * 0.5)));
+        const stop = p * (100 + SOFT);
+        const m = `linear-gradient(to bottom, #000 ${Math.max(0, stop - SOFT).toFixed(1)}%, rgba(0,0,0,0) ${stop.toFixed(1)}%)`;
+        el.style.webkitMaskImage = m;
+        el.style.maskImage = m;
+      }
+      ticking = false;
+    }
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  // ── FAIXA (marquee): clona o conteúdo p/ preencher a largura e ficar contínuo ──
+  //  Recalcula após as fontes carregarem e no resize (evita o "buraco" quando a
+  //  largura medida muda depois que a fonte troca).
+  (function buildMarquee() {
+    const track = document.querySelector('.marquee-track');
+    const wrap = document.querySelector('.marquee');
+    const seq0 = track && track.querySelector('.mq-seq');
+    if (!track || !wrap || !seq0) return;
+    const template = seq0.cloneNode(true); // guarda o original antes de limpar
+    function build() {
+      const probe = template.cloneNode(true);
+      probe.style.visibility = 'hidden';
+      track.innerHTML = '';
+      track.appendChild(probe);
+      const seqW = probe.getBoundingClientRect().width || 400;
+      track.removeChild(probe);
+      const need = Math.max(2, Math.ceil(wrap.clientWidth / seqW) + 1); // cópias p/ cobrir a tela
+      const half = () => {
+        const h = document.createElement('div');
+        h.className = 'mq-half';
+        for (let i = 0; i < need; i++) h.appendChild(template.cloneNode(true));
+        return h;
+      };
+      track.append(half(), half()); // 2 metades idênticas → translateX(-50%) contínuo
+      track.style.animationDuration = Math.max(24, (need * seqW) / 70) + 's'; // velocidade constante
+    }
+    build();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+  })();
+
+  // ── Parallax de profundidade ([data-parallax] com velocidade própria) ──
+  (function parallax() {
+    if (reduced) return;
+    const els = Array.from(document.querySelectorAll('[data-parallax]'))
+      .map(el => ({ el, speed: parseFloat(el.dataset.parallax) || 0 }))
+      .filter(x => x.speed);
+    if (!els.length) return;
+    let ticking = false;
+    function update() {
+      const mid = window.innerHeight / 2;
+      for (const { el, speed } of els) {
+        const r = el.getBoundingClientRect();
+        const offset = (r.top + r.height / 2) - mid;
+        el.style.transform = `translate3d(0, ${(-offset * speed).toFixed(1)}px, 0)`;
+      }
+      ticking = false;
+    }
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  // ── Botões magnéticos (discreto; só com mouse). O cursor personalizado foi removido. ──
+  (function magnetic() {
+    if (reduced || !finePointer) return;
+    document.querySelectorAll('.btn, .nav-cta, .depo-btn').forEach(el => {
+      el.setAttribute('data-magnetic', '');
+      const strength = 0.22, max = 9;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        let x = (e.clientX - (r.left + r.width / 2)) * strength;
+        let y = (e.clientY - (r.top + r.height / 2)) * strength;
+        x = Math.max(-max, Math.min(max, x)); y = Math.max(-max, Math.min(max, y));
+        el.style.transition = 'transform 0s';
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+        el.style.transform = '';
+      });
+    });
+  })();
+
+  // ── Fundo WebGL do hero — SHADER FLUIDO INTERATIVO ──
+  //  Desktop: reage ao mouse (o fluxo gira e o brilho champagne segue o cursor).
+  //  Mobile/toque: um ponto de interação percorre sozinho um laço suave (Lissajous).
+  //  Se o mouse parar (desktop), volta suavemente ao laço. Paleta do site.
+  //  Sem WebGL → fica o gradiente CSS do hero (fallback silencioso).
+  (function heroShader() {
+    if (reduced) return;
+    const canvas = document.querySelector('.fx-canvas');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false });
+    if (!gl) return;
+
+    const vs = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
+    const fs = [
+      '#ifdef GL_FRAGMENT_PRECISION_HIGH',
+      'precision highp float;',
+      '#else',
+      'precision mediump float;',
+      '#endif',
+      'uniform float u_time; uniform vec2 u_res; uniform vec2 u_mouse;',
+      'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }',
+      'float noise(vec2 p){ vec2 i=floor(p), f=fract(p);',
+      ' float a=hash(i), b=hash(i+vec2(1.,0.)), c=hash(i+vec2(0.,1.)), d=hash(i+vec2(1.,1.));',
+      ' vec2 u=f*f*(3.-2.*f); return mix(mix(a,b,u.x), mix(c,d,u.x), u.y); }',
+      'float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<4;i++){ v+=a*noise(p); p=p*2.02; a*=.5; } return v; }',
+      'void main(){',
+      ' float ar = u_res.x / u_res.y;',
+      ' vec2 uv = gl_FragCoord.xy / u_res.xy;',
+      ' float d = distance(vec2(uv.x*ar, uv.y), vec2(u_mouse.x*ar, u_mouse.y));',
+      ' float infl = smoothstep(0.5, 0.0, d);',          // foco suave onde o ponto (defasado) está/passou
+      ' uv += (u_mouse - uv) * infl * 0.12;',            // LENTE suave — arrasta a fumaça, sem vórtice (nada bufado)
+      ' float t = u_time*0.035;',                         // fumaça: lenta e constante
+      ' vec2 p = vec2(uv.x*ar, uv.y) * 1.6;',
+      ' vec2 warp = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(4.3, 1.9) - vec2(t*0.8, 0.0)));',  // domain warp = fumaça
+      ' float n = fbm(p + 1.6*warp);',
+      ' vec3 pearl=vec3(0.949,0.945,0.933), silver=vec3(0.486,0.529,0.549), champ=vec3(0.784,0.718,0.608), graph=vec3(0.227,0.239,0.251);',
+      ' vec3 col = mix(pearl, silver, smoothstep(0.15,0.82,n));',
+      ' col = mix(col, champ, smoothstep(0.55,0.96,n)*0.55);',
+      ' col = mix(col, graph, smoothstep(0.86,1.0,n)*0.10);',
+      ' col = mix(col, champ, infl*0.12);',              // leve realce por onde passou (discreto)
+      ' float alpha = 0.5 + 0.3*n + infl*0.05;',
+      ' alpha = clamp(alpha, 0.0, 0.85);',
+      ' gl_FragColor = vec4(col, alpha);',
+      '}',
+    ].join('\n');
+
+    function sh(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    const prog = gl.createProgram();
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes = gl.getUniformLocation(prog, 'u_res');
+    const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+    // ponto de interação em 0..1 (y invertido p/ casar com o shader)
+    let tx = 0.5, ty = 0.55, mxs = 0.5, mys = 0.55, lastMove = -9999;
+    if (finePointer) {
+      window.addEventListener('mousemove', e => {
+        tx = e.clientX / window.innerWidth;
+        ty = 1 - e.clientY / window.innerHeight;
+        lastMove = performance.now();
+      }, { passive: true });
+    }
+    const maxDPR = finePointer ? 1.5 : 1.25;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
+      const w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+      const h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    }
+    let visible = true, running = false;
+    const start = performance.now();
+    function frame(now) {
+      if (!visible || document.hidden) { running = false; return; }
+      const el = (now - start) / 1000;
+      // laço automático LENTO (movimento próprio, tipo fumaça) — SEMPRE ativo
+      const ax = 0.5 + 0.30 * Math.sin(el * 0.22);
+      const ay = 0.5 + 0.22 * Math.cos(el * 0.18);
+      // o mouse mistura seu ponto ao laço; o peso decai ao parar, mas nunca é
+      // 100% → o movimento próprio nunca para, mesmo com o cursor parado.
+      const recency = finePointer ? Math.max(0, 1 - (now - lastMove) / 2000) : 0;
+      const wgt = 0.65 * recency;
+      const gx = ax * (1 - wgt) + tx * wgt;
+      const gy = ay * (1 - wgt) + ty * wgt;
+      // interpolação BEM lenta → o ponto desliza devagar "por onde o mouse passou"
+      mxs += (gx - mxs) * 0.03;
+      mys += (gy - mys) * 0.03;
+
+      resize();
+      gl.uniform1f(uTime, el);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform2f(uMouse, mxs, mys);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(frame);
+    }
+    function play() { if (!running) { running = true; requestAnimationFrame(frame); } }
+    canvas.classList.add('ready');
+    const hero = document.getElementById('hero');
+    if (hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) play(); }, { threshold: 0 }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) play(); });
+    play();
+  })();
 })();
 
 // ════════════════════════════════════════════════════════════

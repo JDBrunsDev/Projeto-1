@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- Segurança: restringe de onde recursos podem vir (mitiga XSS/injeção).
+       Só permite scripts/estilos do próprio site + Google Fonts, e conexões
+       apenas ao backend JLBruns. Nenhum segredo trafega aqui. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://jwsaemznqrstensiywdt.supabase.co; form-action 'self'" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="description" content="Beleza com Identidade — Clínica de Estética com a Dra. Vanessa. Realçar, nunca transformar." />
   <title>Beleza com Identidade</title>
 
@@ -56,15 +62,17 @@
       <li><a href="#localizacao"><span>Localização</span><span class="idx">05</span></a></li>
     </ul>
     <div class="drawer-foot">
-      <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." data-wa class="drawer-cta" target="_blank" rel="noopener noreferrer">
-        Agendar pelo WhatsApp
+      <a href="#agendar" class="drawer-cta">
+        Agendar consulta
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+      <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." data-wa class="drawer-alt" target="_blank" rel="noopener noreferrer">ou agende pelo WhatsApp</a>
     </div>
   </div>
 
   <!-- ════ HERO ════ -->
   <section id="hero" aria-label="Apresentação">
+    <div class="hero-bg" aria-hidden="true" data-parallax="0.08"><canvas class="fx-canvas"></canvas></div>
     <div class="hero-inner">
 
       <!-- wordmark: nome tratado como marca, não como manchete empilhada -->
@@ -80,8 +88,8 @@
       <p class="hero-slogan">Realçar, nunca transformar.<br />A estética que valoriza quem você já é.</p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/5547990000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." data-wa class="btn btn-fill" target="_blank" rel="noopener noreferrer">
-          <span>Agendar pelo WhatsApp</span>
+        <a href="#agendar" class="btn btn-fill">
+          <span>Agendar consulta</span>
           <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#procedimentos" class="btn btn-line">Ver procedimentos</a>
@@ -89,11 +97,18 @@
     </div>
   </section>
 
+  <!-- ════ FAIXA EM MOVIMENTO ════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="mq-seq">Realçar, nunca transformar <i class="sep">✦</i> Beleza com identidade <i class="sep">✦</i> Naturalidade <i class="sep">✦</i> Cuidado <i class="sep">✦</i> Ciência &amp; sensibilidade <i class="sep">✦</i> </span>
+    </div>
+  </div>
+
   <!-- ════ SOBRE ════ -->
   <section id="sobre" aria-labelledby="sobre-t">
     <div class="sobre-visual reveal-l">
-      <div class="sobre-img"><div class="sobre-img-ph">aqui terá uma foto<br />da clínica</div></div>
-      <div class="sobre-frame" aria-hidden="true"></div>
+      <div class="sobre-img" data-parallax="0.08"><div class="sobre-img-ph">aqui terá uma foto<br />da clínica</div></div>
+      <div class="sobre-frame" aria-hidden="true" data-parallax="-0.05"></div>
     </div>
     <div class="sobre-text-col">
       <div class="reveal d1"><span class="sobre-tag">A clínica</span></div>
@@ -281,6 +296,12 @@
 
           <form class="sched-form" data-form hidden novalidate>
             <p class="sched-panel-label">Seus dados</p>
+            <!-- honeypot anti-robô: invisível e fora da navegação; humanos não preenchem -->
+            <div class="sched-hp" aria-hidden="true">
+              <label>Deixe este campo em branco
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
             <label class="sched-field">
               <span>Nome completo</span>
               <input type="text" name="nome" required autocomplete="name" />
@@ -356,6 +377,6 @@
     <span class="wa-label">WhatsApp</span>
   </a>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>
